@@ -1,4 +1,35 @@
-# Getting Started with Create React App
+# TTTM Scorer App
+
+A modern, responsive table tennis scoring application built with React. This application provides real-time scoring for table tennis matches with support for singles, doubles, and team competitions.
+
+## Features
+
+- **Modern Design**: Dark theme with glassmorphism effects and smooth animations
+- **Responsive Layout**: Optimized for desktop, tablet, and mobile devices
+- **Real-time Scoring**: Live score updates with server/receiver tracking
+- **Multiple Game Types**: Support for Singles (S), Doubles (D), Team (T), and Competition (C) matches
+- **Official Rules**: Implements official table tennis scoring rules (11 points, 2-point advantage)
+- **Server Rotation**: Automatic server/receiver rotation according to official rules
+- **Timeout Management**: Built-in timeout and break timers
+- **Match History**: Detailed score tracking by sets
+- **API Integration**: Real-time synchronization with backend server
+
+## Design Features
+
+- **Dark Theme**: Black background with cyan (#00d4ff) accent colors
+- **Glassmorphism**: Translucent cards with backdrop blur effects
+- **Smooth Animations**: Fade-in, slide-in, and glow effects
+- **Responsive Grid**: Flexible layouts that adapt to screen size
+- **Accessibility**: High contrast support and keyboard navigation
+- **Modern Typography**: Clean, readable fonts with proper hierarchy
+
+## Technology Stack
+
+- React 18.2.0
+- Modern CSS3 with Flexbox and Grid
+- Custom HTTP client for API communication
+- Modal system for user interactions
+- Responsive design principles
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
