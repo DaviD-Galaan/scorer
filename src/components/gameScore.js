@@ -205,10 +205,22 @@ export default function GameScore({http, game, isRencontreFinished = false}) {
                     <div className="game-score-player">
                         <span className="player-name">
                             {game.playerA || "-"}
+                            {game.cards[game.playerA_ID] && game.cards[game.playerA_ID].map((card, index) => (
+                                <div
+                                    key={`card-${game.playerA_ID}-${index}`}
+                                    className={`card-icon-small ${card === "Y" ? "yellow" : "red"}`}
+                                ></div>
+                            ))}
                             {game.type === 'D' && game.playerB ? (
                                 <>
                                     <span className="player-separator">/</span>
                                     {game.playerB}
+                                    {game.cards[game.playerB_ID] && game.cards[game.playerB_ID].map((card, index) => (
+                                        <div
+                                            key={`card-${game.playerB_ID}-${index}`}
+                                            className={`card-icon-small ${card === "Y" ? "yellow" : "red"}`}
+                                        ></div>
+                                    ))}
                                 </>
                             ) : ''}
                         </span>
@@ -253,10 +265,22 @@ export default function GameScore({http, game, isRencontreFinished = false}) {
                     <div className="game-score-player">
                         <span className="player-name">
                             {game.playerX || "-"}
+                            {game.cards[game.playerX_ID] && game.cards[game.playerX_ID].map((card, index) => (
+                                <div
+                                    key={`card-${game.playerX_ID}-${index}`}
+                                    className={`card-icon-small ${card === "Y" ? "yellow" : "red"}`}
+                                ></div>
+                            ))}
                             {game.type === 'D' && game.playerY ? (
                                 <>
                                     <span className="player-separator">/</span>
                                     {game.playerY}
+                                    {game.cards[game.playerY_ID] && game.cards[game.playerY_ID].map((card, index) => (
+                                        <div
+                                            key={`card-${game.playerY_ID}-${index}`}
+                                            className={`card-icon-small ${card === "Y" ? "yellow" : "red"}`}
+                                        ></div>
+                                    ))}
                                 </>
                             ) : ''}
                         </span>
@@ -298,7 +322,14 @@ export default function GameScore({http, game, isRencontreFinished = false}) {
                             <Menu
                                 http={http}
                                 game={game}
-                                updateGame={game.updateGame}
+                                //updateGame={game.updateGame}
+                                updateGame={(timestamp) => {
+                                    // Update the selected match game
+                                    setScorer(prev => ({
+                                        ...prev,
+                                        game: prev.game
+                                    }));
+                                }}
                                 setTimeoutState={game.setTimeoutState}
                                 onClose={closeMatchScorer}
                                 />

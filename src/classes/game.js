@@ -28,6 +28,12 @@ export default class Game {
         //console.log(data);
         this.id = data.id;
         this.type = data.type;
+
+        this.playerA_ID = data.playerA_ID;
+        this.playerB_ID = data.playerB_ID;
+        this.playerX_ID = data.playerX_ID;
+        this.playerY_ID = data.playerY_ID;
+
         this.playerA = data.playerA;
         this.playerB = data.playerB;
         this.playerX = data.playerX;
@@ -55,7 +61,8 @@ export default class Game {
         this.direction = "rtl";
         this.endGame = this.setAB > this.sets/2 || this.setXY > this.sets/2;
         this.serverReceiver = (data.details && data.details.serverReceiver) ? data.details.serverReceiver : [];
-        this.events = (data.details && data.details.events) ? data.details.events : [];
+        this.events = (data.details && data.details.events)     ? data.details.events   : [];
+        this.cards  = (data.details && data.details.cards)      ? data.details.cards    : {};
     }
     
     changeScore(player, points)
@@ -196,6 +203,7 @@ export default class Game {
     getDetails() {
         return {
             events: this.events,
+            cards: this.cards,
             serverReceiver: this.serverReceiver
         }
     }

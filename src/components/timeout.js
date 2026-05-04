@@ -4,7 +4,7 @@ import Modal from "../tools/modal";
 let timeoutDuration = 0;
 let timerId = 0;
 
-export default function Timeout({http, timeoutState, setTimeoutState}) {
+export default function Timeout({http, timeoutState, setTimeoutState, refrechGame}) {
     
     const close = () => {
         setTimeoutState({
@@ -13,6 +13,7 @@ export default function Timeout({http, timeoutState, setTimeoutState}) {
             game: null
           });
         clearTimeout(timerId);
+        refrechGame();
     }
 
     const startTimeout = (e) => {

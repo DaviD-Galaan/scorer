@@ -71,6 +71,21 @@ export default function Scorer({http, game, updateGame}) {
         }, 1000);
     }
 
+    const handleRemoveCard = (playerId, index) => {
+        const confirmDelete = window.confirm(http.dico["ARE_YOU_SURE_REMOVE_CARD"]);
+        if (!confirmDelete) return;
+
+        const updatedCards = { ...game.cards };
+        const playerCards = [...(updatedCards[playerId] || [])];
+
+        playerCards.splice(index, 1);
+        updatedCards[playerId] = playerCards;
+
+        game.cards = updatedCards;
+        http.put(http.API + "game/" + game.id + "/details", game.getDetails());
+        updateGame(Date.now());
+    };
+
     
     
     return(
@@ -83,6 +98,18 @@ export default function Scorer({http, game, updateGame}) {
                     <div className="scorer-side left-side">
                         <div className="player-section">
                             <div className="player-name">
+                                {game.cards[game.playerA_ID] && game.cards[game.playerA_ID].length > 0 && (
+                                    <div className="player-cards-display">
+                                        {game.cards[game.playerA_ID].map((card, index) => (
+                                            <div
+                                                key={`card-${game.playerA_ID}-${index}`}
+                                                onClick={() => handleRemoveCard(game.playerA_ID, index)}
+                                                className={`card-icon-small ${card === "Y" ? "yellow" : "red"}`}
+                                                title={http.dico["REMOVE_CARD"]}
+                                            ></div>
+                                        ))}
+                                    </div>
+                                )}
                                 {game.playerA}
                                 {game.getCurrentServer()[0] === "A" &&
                                     <div className="server-indicator"></div>
@@ -97,6 +124,18 @@ export default function Scorer({http, game, updateGame}) {
                             {game.type === "D" && (
                                 <>
                                     <div className="player-name">
+                                        {game.cards[game.playerB_ID] && game.cards[game.playerB_ID].length > 0 && (
+                                            <div className="player-cards-display">
+                                                {game.cards[game.playerB_ID].map((card, index) => (
+                                                    <div
+                                                        key={`card-${game.playerB_ID}-${index}`}
+                                                        onClick={() => handleRemoveCard(game.playerB_ID, index)}
+                                                        className={`card-icon-small ${card === "Y" ? "yellow" : "red"}`}
+                                                        title={http.dico["REMOVE_CARD"]}
+                                                    ></div>
+                                                ))}
+                                            </div>
+                                        )}
                                         {game.playerB}
                                         {game.getCurrentServer()[0] === "B" &&
                                             <div className="server-indicator"></div>
@@ -146,6 +185,18 @@ export default function Scorer({http, game, updateGame}) {
                     <div className="scorer-side right-side">
                         <div className="player-section">
                             <div className="player-name">
+                                {game.cards[game.playerX_ID] && game.cards[game.playerX_ID].length > 0 && (
+                                    <div className="player-cards-display">
+                                        {game.cards[game.playerX_ID].map((card, index) => (
+                                            <div
+                                                key={`card-${game.playerX_ID}-${index}`}
+                                                onClick={() => handleRemoveCard(game.playerX_ID, index)}
+                                                className={`card-icon-small ${card === "Y" ? "yellow" : "red"}`}
+                                                title={http.dico["REMOVE_CARD"]}
+                                            ></div>
+                                        ))}
+                                    </div>
+                                )}
                                 {game.playerX}
                                 {game.getCurrentServer()[0] === "X" &&
                                     <div className="server-indicator"></div>
@@ -160,6 +211,18 @@ export default function Scorer({http, game, updateGame}) {
                             {game.type === "D" && (
                                 <>
                                     <div className="player-name">
+                                        {game.cards[game.playerY_ID] && game.cards[game.playerY_ID].length > 0 && (
+                                            <div className="player-cards-display">
+                                                {game.cards[game.playerY_ID].map((card, index) => (
+                                                    <div
+                                                        key={`card-${game.playerY_ID}-${index}`}
+                                                        onClick={() => handleRemoveCard(game.playerY_ID, index)}
+                                                        className={`card-icon-small ${card === "Y" ? "yellow" : "red"}`}
+                                                        title={http.dico["REMOVE_CARD"]}
+                                                    ></div>
+                                                ))}
+                                            </div>
+                                        )}
                                         {game.playerY}
                                         {game.getCurrentServer()[0] === "Y" &&
                                             <div className="server-indicator"></div>

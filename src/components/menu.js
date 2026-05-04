@@ -1,13 +1,20 @@
 import React, { useState }  from "react";
 import Modal                from "../tools/modal";
 import Timeout              from "../components/timeout";
+import Cards                from "../components/cards";
 
 export default function Scorer({http, game, updateGame, onClose}) {
 
     const [paramsState, setParamsState] = useState(false);
+
     const [timeoutState, setTimeoutState] = useState({
         opened: false,
         time: 0,
+        game: null
+      });
+    
+      const [cardsState, setCardsState] = useState({
+        opened: false,
         game: null
       });
 
@@ -44,6 +51,14 @@ export default function Scorer({http, game, updateGame, onClose}) {
 
         console.log("✅ setTimeoutState called successfully");
     }
+    const openCards = () => {
+        setCardsState({
+            opened: true,
+            game: game
+        });
+
+        console.log("✅ setTimeoutState called successfully");
+    }
 
     return(
         <>
@@ -57,7 +72,7 @@ export default function Scorer({http, game, updateGame, onClose}) {
                     <img src="https://dev.tttm.co.il/img/timeout.png" alt="Timeout" />
                     <span className="menu-item-text">{http.dico["TIMES"]}</span>
                 </li>
-                <li className="menu-item">
+                <li className="menu-item" onClick={openCards}>
                     <img src="https://dev.tttm.co.il/img/cards.png" alt="Cards" />
                     <span className="menu-item-text">{http.dico["CARDS"]}</span>
                 </li>
@@ -98,6 +113,14 @@ export default function Scorer({http, game, updateGame, onClose}) {
             http={http}
             timeoutState={timeoutState}
             setTimeoutState={setTimeoutState}
+            refrechGame = {() => updateGame(Date.now())}
+        />
+
+        <Cards
+            http={http}
+            cardsState={cardsState}
+            setCardsState={setCardsState}
+            refrechGame = {() => updateGame(Date.now())}
         />
         </>
         

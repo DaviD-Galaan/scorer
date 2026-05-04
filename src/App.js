@@ -14,11 +14,15 @@ const http = new myhttp();
 const game = new Game();
 const teamGame = new TeamGame();
 
-if(document.location.href.search("http://localhost") > -1)
+// Configuration de l'API
+if(document.location.href.search("http://localhost") > -1) {
+  // En développement: utilise le proxy configuré dans setupProxy.js
+  //http.API = "/api.1.0/";
   http.API = "https://dev.tttm.co.il/api.1.0/";
-  //http.API = "https://tttm.co.il/api.1.0/";
-else
+} else {
+  // En production: utilise le chemin relatif depuis /scorer/
   http.API = "/api.1.0/";
+}
 
 const getIdFromUrl = () => {
   // Handle URLs like ?469403 (no key-value pair, just the ID)
@@ -46,10 +50,15 @@ function App() {
     if(!http.dico) {
       http.get(http.API + "game/dico" ).then( data => {
         console.log(data);
-        http.dico = data.resp;
-        updateGame(Date.now());
+        if(data && data.resp) {
+          http.dico = data.resp;
+          updateGame(Date.now());
+        }
       })
-    }  
+      .catch(error => {
+        console.error("Error loading dictionary:", error);
+      });
+    }
     if(matchId) {
       console.log("get Game !");
     }
@@ -61,9 +70,13 @@ function App() {
     console.log("get Game !");
     http.get(http.API + "game/" + matchId ).then( data => {
         console.log("game", data);
-        if(data.resp.id)
+        if(data && data.resp && data.resp.id) {
           initGame(data.resp);
+        }
       })
+      .catch(error => {
+        console.error("Error loading game:", error);
+      });
   }, [matchId]);
   
   const initGame = (data) => {
