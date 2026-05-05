@@ -274,12 +274,12 @@ export default function Scorer({http, game, updateGame}) {
         <div className="game-controls">
             {game.endGame && game.winner == 0 && (
                 <button className="btn btn-success btn-large finish-game" onClick={finishGame}>
-                    Finish the game
+                    {http.dico["END_GAME"]}
                 </button>
             )}
             {game.endGame && game.winner != 0 && (
                 <button className="btn btn-danger btn-large open-game" onClick={openGame}>
-                    Open the game
+                    {/*http.dico["REMOVE_CARD"]*/} Open the game
                 </button>
             )}
         </div>
@@ -308,13 +308,13 @@ export default function Scorer({http, game, updateGame}) {
         {game.type === "D" && (
             <Modal
                 id="ChooseServer"
-                title="Choose Server/Receiver"
+                title={http.dico["CHOOSE_SERVER_RECEIVER"]}
                 className="choose-server-container"
                 opened={game.firstServer.length < 2}
             >
                 {game.firstServer === "" && (
                     <>
-                        <h3 style={{color: '#00d4ff', marginBottom: '1rem'}}>Choose Server</h3>
+                        <h3 style={{color: '#00d4ff', marginBottom: '1rem'}}>{http.dico["CHOOSE_SERVER"]}</h3>
                         <div className="server-options">
                             <button className="btn btn-primary" onClick={() => chooseServer("A")}>
                                 {game.playerA}
@@ -336,7 +336,7 @@ export default function Scorer({http, game, updateGame}) {
 
                 {(game.firstServer === "A" || game.firstServer === "B") && (
                     <>
-                        <h3 style={{color: '#00d4ff', marginBottom: '1rem'}}>Choose Receiver</h3>
+                        <h3 style={{color: '#00d4ff', marginBottom: '1rem'}}>{http.dico["CHOOSE_RECEIVER"]}</h3>
                         <div className="server-options">
                             <button className="btn btn-primary" onClick={() => chooseReceiver("X")}>
                                 {game.playerX}
@@ -350,7 +350,7 @@ export default function Scorer({http, game, updateGame}) {
 
                 {(game.firstServer === "X" || game.firstServer === "Y") && (
                     <>
-                        <h3 style={{color: '#00d4ff', marginBottom: '1rem'}}>Choose Receiver</h3>
+                        <h3 style={{color: '#00d4ff', marginBottom: '1rem'}}>{http.dico["CHOOSE_RECEIVER"]}</h3>
                         <div className="server-options">
                             <button className="btn btn-primary" onClick={() => chooseReceiver("A")}>
                                 {game.playerA}

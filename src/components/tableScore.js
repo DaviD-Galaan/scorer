@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 
-export default function TableScore({game}) {
+export default function TableScore({http,game}) {
 
     return(
         <div className="table-score-container">
             <div className="table-score">
                 <div className="table-score-header">
-                    <h2 className="table-score-title">Match Score</h2>
+                    <h2 className="table-score-title">{http.dico["SCORE"]}</h2>
                 </div>
 
                 {/* Team AB */}

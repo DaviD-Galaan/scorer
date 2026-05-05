@@ -345,7 +345,7 @@ export default function GameScore({http, game, isRencontreFinished = false}) {
                                     }));
                                 }}
                             />
-                        <TableScore game={game} />    
+                        <TableScore http={http} game={game} />    
                     </div>
                 </div>
             </div>

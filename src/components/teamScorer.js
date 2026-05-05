@@ -454,7 +454,7 @@ export default function TeamScorer({http, teamGame, updateGame}) {
                         }}
                         disabled={isRencontreBuilt || isRencontreFinished}
                     >
-                        <option value="">-- Select Team --</option>
+                        <option value="">-- {http.dico["TEAM"]} A --</option>
                         <option value={teamGame.team1?.id}>
                             {teamGame.team1?.name}
                         </option>
@@ -476,7 +476,7 @@ export default function TeamScorer({http, teamGame, updateGame}) {
                         }}
                         disabled={isRencontreBuilt || isRencontreFinished}
                     >
-                        <option value="">-- Select Team --</option>
+                        <option value="">-- {http.dico["TEAM"]} X --</option>
                         <option value={teamGame.team1?.id}>
                             {teamGame.team1?.name}
                         </option>
@@ -517,7 +517,7 @@ export default function TeamScorer({http, teamGame, updateGame}) {
                                     <div key={index} className="player-card double-card">
                                         <div className="player-position-label">
                                             <span className="position-badge">{player}</span>
-                                            <span className="player-type">Double</span>
+                                            <span className="player-type">{http.dico["DOUBLE"]}</span>
                                         </div>
                                         <div className="double-players-container">
                                             <button
@@ -529,7 +529,7 @@ export default function TeamScorer({http, teamGame, updateGame}) {
                                                 <span className="player-name-display">
                                                     {player1Id && player1Id !== "0" ?
                                                         getPlayerName(player1Id) :
-                                                        "Click to select"}
+                                                        http.dico["CLICK_TO_SELECT"]}
                                                 </span>
                                             </button>
                                             <button
@@ -541,7 +541,7 @@ export default function TeamScorer({http, teamGame, updateGame}) {
                                                 <span className="player-name-display">
                                                     {player2Id && player2Id !== "0" ?
                                                         getPlayerName(player2Id) :
-                                                        "Click to select"}
+                                                        http.dico["CLICK_TO_SELECT"]}
                                                 </span>
                                             </button>
                                         </div>
@@ -557,13 +557,13 @@ export default function TeamScorer({http, teamGame, updateGame}) {
                                     >
                                         <div className="player-position-label">
                                             <span className="position-badge">{player}</span>
-                                            <span className="player-type">Single</span>
+                                            <span className="player-type">{http.dico["SINGLE"]}</span>
                                         </div>
                                         <div className="player-name-display">
                                             {playerData && playerData !== "0" ? (
                                                 <span>{getPlayerName(playerData)}</span>
                                             ) : (
-                                                <span className="not-selected">Click to select player</span>
+                                                <span className="not-selected">{http.dico["CLICK_TO_SELECT"]}</span>
                                             )}
                                         </div>
                                     </div>
@@ -601,7 +601,7 @@ export default function TeamScorer({http, teamGame, updateGame}) {
                                     <div key={index} className="player-card double-card">
                                         <div className="player-position-label">
                                             <span className="position-badge">{player}</span>
-                                            <span className="player-type">Double</span>
+                                            <span className="player-type">{http.dico["DOUBLE"]}</span>
                                         </div>
                                         <div className="double-players-container">
                                             <button
@@ -613,7 +613,7 @@ export default function TeamScorer({http, teamGame, updateGame}) {
                                                 <span className="player-name-display">
                                                     {player1Id && player1Id !== "0" ?
                                                         getPlayerName(player1Id) :
-                                                        "Click to select"}
+                                                        http.dico["CLICK_TO_SELECT"]}
                                                 </span>
                                             </button>
                                             <button
@@ -625,7 +625,7 @@ export default function TeamScorer({http, teamGame, updateGame}) {
                                                 <span className="player-name-display">
                                                     {player2Id && player2Id !== "0" ?
                                                         getPlayerName(player2Id) :
-                                                        "Click to select"}
+                                                        http.dico["CLICK_TO_SELECT"]}
                                                 </span>
                                             </button>
                                         </div>
@@ -641,13 +641,13 @@ export default function TeamScorer({http, teamGame, updateGame}) {
                                     >
                                         <div className="player-position-label">
                                             <span className="position-badge">{player}</span>
-                                            <span className="player-type">Single</span>
+                                            <span className="player-type">{http.dico["SINGLE"]}</span>
                                         </div>
                                         <div className="player-name-display">
                                             {playerData && playerData !== "0" ? (
                                                 <span>{getPlayerName(playerData)}</span>
                                             ) : (
-                                                <span className="not-selected">Click to select player</span>
+                                                <span className="not-selected">{http.dico["CLICK_TO_SELECT"]}</span>
                                             )}
                                         </div>
                                     </div>
